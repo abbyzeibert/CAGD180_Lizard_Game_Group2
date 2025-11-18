@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int playerSpeed;
+    public int playerClimb;
+    public int playerLeap;
+
+    public int currentRace;
+
+
     // Start is called before the first frame update
     void Start()
     {
