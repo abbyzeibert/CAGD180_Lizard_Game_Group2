@@ -11,6 +11,7 @@ public class Lizard : MonoBehaviour
     public bool shouldRun = true;
     public bool shouldClimb = false;
     public bool shouldLeap = false;
+    public bool isLeaping = false;
 
     public bool isPlayer;
     public bool isGod;
@@ -77,26 +78,30 @@ public class Lizard : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-
+        if (isLeaping && other.CompareTag("Landing"))
+        {
+            Waypoint landingPoint = other.GetComponent<Waypoint>();
+            SetNextPoint(track.levelWaypoints[landingPoint.nextPoint], landingPoint.waypointType);
+        }
     }
 
     public void SetNextPoint(Waypoint nextPoint, Type thisType)
     {
-
-
         curPoint = nextPoint;
 
-        shouldRun = shouldClimb = shouldLeap = false;
+        shouldRun = shouldClimb = shouldLeap = isLeaping = false;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         switch (thisType)
         {
             case Type.Run:
                 shouldRun = true;
                 transform.rotation = Quaternion.Euler(0, 0, -15);
+                Debug.Log("Set rotation to -15 degrees");
                 StartCoroutine(RunWiggle());
                 break;
             case Type.Climb:
                 transform.rotation = Quaternion.Euler(0, 0, 75);
+                Debug.Log("Set rotation to 75 degrees");
                 shouldClimb = true;
                 StartCoroutine(ClimbWiggle());
                 break;
@@ -133,6 +138,7 @@ public class Lizard : MonoBehaviour
             rb.AddForce(Vector3.right * leapForce, ForceMode.Impulse);
             rb.AddForce(Vector3.up * ((float)leapForce / 2), ForceMode.Impulse);
             shouldLeap = false;
+            isLeaping = true;
         }
     }
 
@@ -142,6 +148,7 @@ public class Lizard : MonoBehaviour
         while (shouldRun)
         {
             transform.Rotate(0, 0, (30 * direction));
+            Debug.Log("roated 30 degrees");
             direction *= -1;
             yield return new WaitForSeconds(1 / (float)runSpeed);
         }
