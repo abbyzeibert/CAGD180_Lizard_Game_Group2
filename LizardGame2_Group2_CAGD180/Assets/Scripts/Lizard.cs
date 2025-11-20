@@ -82,6 +82,8 @@ public class Lizard : MonoBehaviour
 
     public void SetNextPoint(Waypoint nextPoint, Type thisType)
     {
+
+
         curPoint = nextPoint;
 
         shouldRun = shouldClimb = shouldLeap = false;
@@ -90,11 +92,13 @@ public class Lizard : MonoBehaviour
         {
             case Type.Run:
                 shouldRun = true;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.rotation = Quaternion.Euler(0, 0, -15);
+                StartCoroutine(RunWiggle());
                 break;
             case Type.Climb:
-                transform.rotation = Quaternion.Euler(0, 0, 90);
+                transform.rotation = Quaternion.Euler(0, 0, 75);
                 shouldClimb = true;
+                StartCoroutine(ClimbWiggle());
                 break;
             case Type.Leap:
                 transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -129,6 +133,28 @@ public class Lizard : MonoBehaviour
             rb.AddForce(Vector3.right * leapForce, ForceMode.Impulse);
             rb.AddForce(Vector3.up * ((float)leapForce / 2), ForceMode.Impulse);
             shouldLeap = false;
+        }
+    }
+
+    public IEnumerator RunWiggle()
+    {
+        int direction = 1;
+        while (shouldRun)
+        {
+            transform.Rotate(0, 0, (30 * direction));
+            direction *= -1;
+            yield return new WaitForSeconds(1 / (float)runSpeed);
+        }
+    }
+
+    public IEnumerator ClimbWiggle()
+    {
+        int direction = 1;
+        while (shouldClimb)
+        {
+            transform.Rotate(0, 0, (30 * direction));
+            direction *= -1;
+            yield return new WaitForSeconds(1 / (float)climbSpeed);
         }
     }
 }
