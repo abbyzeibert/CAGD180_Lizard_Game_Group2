@@ -89,6 +89,9 @@ public class Lizard : MonoBehaviour
     {
         curPoint = nextPoint;
 
+        StopCoroutine("RunWiggle");
+        StopCoroutine("ClimbWiggle");
+
         shouldRun = shouldClimb = shouldLeap = isLeaping = false;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         switch (thisType)
