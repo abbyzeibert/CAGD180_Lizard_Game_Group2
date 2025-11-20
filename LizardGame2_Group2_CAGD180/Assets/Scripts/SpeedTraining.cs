@@ -13,13 +13,11 @@ public class SpeedTraining : MonoBehaviour
     public int speedToAdd = 0;
     public bool isTrainingMoveing = false;
     int direction = 1;
-
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(WaitToStart());
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -47,7 +45,6 @@ public class SpeedTraining : MonoBehaviour
             direction *= -1;
         }
     }
-    
     public IEnumerator WaitToStart()
     {
 
