@@ -7,22 +7,24 @@ public class SpeedTraining : MonoBehaviour
     public int clickAmount = 0;
     public int speedToAdd = 0;
     public bool isTrainingMoveing = false;
-    
+    int direction = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(WaitToStart());
     }
 
     // Update is called once per frame
     void Update()
     {
         SpaceButtonClickCount();
-        if (clickAmount > 100)
+        
+        if (clickAmount > 130)
         {
             speedToAdd = 3;
         }
-        else if (clickAmount > 50)
+        else if (clickAmount > 80)
         {
             speedToAdd = 2;
         }
@@ -36,8 +38,11 @@ public class SpeedTraining : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) && isTrainingMoveing)
         {
             clickAmount++;
+            transform.Rotate(0, 0, (30 * direction));
+            direction *= -1;
         }
     }
+    
     public IEnumerator WaitToStart()
     {
 
