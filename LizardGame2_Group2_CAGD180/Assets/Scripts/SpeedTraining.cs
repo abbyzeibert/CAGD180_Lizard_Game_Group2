@@ -1,6 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+ * Topher Overbey
+ * 11/20/25
+ * Controls the speed training scene's lizard and gives off the number to add onto the normal speed
+*/
 
 public class SpeedTraining : MonoBehaviour
 {
