@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Type { Run, Climp, Leap };
+public enum Type { Run, Climb, Leap };
 
 public class Waypoint : MonoBehaviour
 {
 
     public Type waypointType;
-    private Vector3 toMove;
+    public int nextPoint;
+    public Vector3 toMove;
 
     public void Start()
     {
