@@ -21,9 +21,17 @@ public class ClimbTraining : MonoBehaviour
     private int climbScore;
     public GameObject lizard;
 
-    public GameObject Redzone;
-    public GameObject Yellowzone;
-    public GameObject Greenzone;
+    public GameObject redZone;
+    public GameObject yellowZone;
+    public GameObject greenZone;
+
+    public GameObject bar;
+    public GameObject leftPoint;
+    public GameObject rightPoint;
+    private Vector3 leftPos;
+    private Vector3 rightPos;
+    public int speed;
+    public bool goingLeft;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +42,36 @@ public class ClimbTraining : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        BarMovement();
     }
+
+    void BarMovement()
+    {
+        if (goingLeft)
+        {
+            if (transform.position.x <= leftPos.x)
+            {
+                goingLeft = false;
+            }
+            else
+            {
+                transform.position += Vector3.left * Time.deltaTime * speed;
+            }
+        }
+        else
+        {
+            if (transform.position.x >= rightPos.x)
+            {
+                goingLeft = true;
+            }
+            else
+            {
+                transform.position += Vector3.right * Time.deltaTime * speed;
+            }
+
+        }
+    }
+
 
     void LizardMovement()
     {
