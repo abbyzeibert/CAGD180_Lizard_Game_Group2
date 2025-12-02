@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 /*
  * Topher Overbey
  * 11/20/25
@@ -67,5 +68,7 @@ public class SpeedTraining : MonoBehaviour
         manager.playerSpeed += speedToAdd;
         instructions.SetActive(false);
         isTrainingMoveing = false;
+        yield return new WaitForSeconds(7);
+        SceneManager.LoadScene(1);
     }
 }
