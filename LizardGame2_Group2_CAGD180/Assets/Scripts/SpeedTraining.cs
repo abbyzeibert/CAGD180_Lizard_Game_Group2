@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 /*
  * Topher Overbey
  * 11/20/25
@@ -14,7 +16,8 @@ public class SpeedTraining : MonoBehaviour
     public bool isTrainingMoveing = false;
     public GameManager manager;
     public GameObject instructions;
-    
+    public TMP_Text scoreText;
+
     int direction = 1;
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,7 @@ public class SpeedTraining : MonoBehaviour
     void Update()
     {
         SpaceButtonClickCount();
-        
+        scoreText.text = "Click Amount: " + clickAmount.ToString();
     }
     public void SpaceButtonClickCount()
     {
