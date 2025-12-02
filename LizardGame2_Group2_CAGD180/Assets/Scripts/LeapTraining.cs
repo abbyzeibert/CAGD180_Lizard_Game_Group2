@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LeapTraining : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class LeapTraining : MonoBehaviour
     public Rigidbody lizard;
     public GameObject marker;
     public GameManager manager;
+
+    public TMP_Text intro;
+    public TMP_Text timer;
+    public TMP_Text result;
 
     // Start is called before the first frame update
     void Start()
@@ -76,21 +81,35 @@ public class LeapTraining : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         StartCoroutine(GameTimer());
+        intro.gameObject.SetActive(false);
     }
 
     public IEnumerator GameTimer()
     {
         gameRunning = true;
-        yield return new WaitForSeconds(30);
-        gameRunning = false;
+        
+        for(int i = 30; i >= 0; i--)
+        {
+            timer.text = "Time: " + i;
+            yield return new WaitForSeconds(1);
+        }
 
+        gameRunning = false;
+        result.gameObject.SetActive(true);
+        
         if(numJumps >= 30)
         {
             manager.playerLeap += 2;
+            result.text = "+ " + 2 + " leap!";
         }
         else if( numJumps >= 15)
         {
             manager.playerLeap += 1;
+            result.text = "+ " + 1 + " leap!";
+        }
+        else
+        {
+            result.text = "+ " + 0 + " leap";
         }
 
         yield return new WaitForSeconds(5);
