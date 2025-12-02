@@ -12,10 +12,12 @@ public class SpeedTraining : MonoBehaviour
     public int clickAmount = 0;
     public int speedToAdd = 0;
     public bool isTrainingMoveing = false;
+    public GameManager manager;
     int direction = 1;
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         StartCoroutine(WaitToStart());
     }
     // Update is called once per frame
@@ -23,6 +25,15 @@ public class SpeedTraining : MonoBehaviour
     {
         SpaceButtonClickCount();
         
+    }
+    public void SpaceButtonClickCount()
+    {
+        if (Input.GetKeyUp(KeyCode.Space) && isTrainingMoveing)
+        {
+            clickAmount++;
+            transform.Rotate(0, 0, (30 * direction));
+            direction *= -1;
+        }
         if (clickAmount > 130)
         {
             speedToAdd = 3;
@@ -36,15 +47,6 @@ public class SpeedTraining : MonoBehaviour
             speedToAdd = 1;
         }
     }
-    public void SpaceButtonClickCount()
-    {
-        if (Input.GetKeyUp(KeyCode.Space) && isTrainingMoveing)
-        {
-            clickAmount++;
-            transform.Rotate(0, 0, (30 * direction));
-            direction *= -1;
-        }
-    }
     public IEnumerator WaitToStart()
     {
 
@@ -55,6 +57,7 @@ public class SpeedTraining : MonoBehaviour
     {
         isTrainingMoveing = true;
         yield return new WaitForSeconds(30);
+        manager.playerSpeed += speedToAdd;
         isTrainingMoveing = false;
     }
 }
