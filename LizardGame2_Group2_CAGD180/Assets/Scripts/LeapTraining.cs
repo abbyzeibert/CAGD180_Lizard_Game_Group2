@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LeapTraining : MonoBehaviour
 {
@@ -94,7 +95,7 @@ public class LeapTraining : MonoBehaviour
 
         yield return new WaitForSeconds(5);
 
-
+        SceneManager.LoadScene(1);
     }
 
     public IEnumerator JumpTimer()
