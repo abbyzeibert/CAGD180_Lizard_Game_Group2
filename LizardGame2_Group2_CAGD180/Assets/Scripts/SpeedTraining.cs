@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 /*
  * Topher Overbey
  * 11/20/25
@@ -12,29 +14,23 @@ public class SpeedTraining : MonoBehaviour
     public int clickAmount = 0;
     public int speedToAdd = 0;
     public bool isTrainingMoveing = false;
+    public GameManager manager;
+    public GameObject instructions;
+    public TMP_Text scoreText;
+
     int direction = 1;
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         StartCoroutine(WaitToStart());
+        instructions.SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
         SpaceButtonClickCount();
-        
-        if (clickAmount > 130)
-        {
-            speedToAdd = 3;
-        }
-        else if (clickAmount > 80)
-        {
-            speedToAdd = 2;
-        }
-        else
-        {
-            speedToAdd = 1;
-        }
+        scoreText.text = "Click Amount: " + clickAmount.ToString();
     }
     public void SpaceButtonClickCount()
     {
@@ -43,6 +39,18 @@ public class SpeedTraining : MonoBehaviour
             clickAmount++;
             transform.Rotate(0, 0, (30 * direction));
             direction *= -1;
+        }
+        if (clickAmount > 140)
+        {
+            speedToAdd = 3;
+        }
+        else if (clickAmount > 90)
+        {
+            speedToAdd = 2;
+        }
+        else
+        {
+            speedToAdd = 1;
         }
     }
     public IEnumerator WaitToStart()
@@ -54,7 +62,10 @@ public class SpeedTraining : MonoBehaviour
     public IEnumerator StartTraining()
     {
         isTrainingMoveing = true;
+        instructions.SetActive(true);
         yield return new WaitForSeconds(30);
+        manager.playerSpeed += speedToAdd;
+        instructions.SetActive(false);
         isTrainingMoveing = false;
     }
 }

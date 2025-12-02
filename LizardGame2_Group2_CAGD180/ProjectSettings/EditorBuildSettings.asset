@@ -4,5 +4,26 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 5947d47f1ee29394cb3725b093b371ac
+  - enabled: 1
+    path: Assets/Scenes/Hub.unity
+    guid: 6721df391c4c114428e7b7a1545c6467
+  - enabled: 1
+    path: Assets/Scenes/Speedtraining.unity
+    guid: bff9f9d8c99d7e5419f1b93e3831d10a
+  - enabled: 1
+    path: Assets/Scenes/ClimbTraining.unity
+    guid: a75d65069b63db84da1b114a2992b615
+  - enabled: 1
+    path: Assets/Scenes/LeapTraining.unity
+    guid: 94d04a955383aa94b879e220644c2337
+  - enabled: 1
+    path: Assets/Scenes/Race.unity
+    guid: 77157786d526b154393028be73eb1ecb
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 3f82b560ea7b4f64dbf857080ba3c8cd
   m_configObjects: {}
