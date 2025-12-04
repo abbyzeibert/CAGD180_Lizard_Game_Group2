@@ -53,9 +53,9 @@ public class Lizard : MonoBehaviour
                     break;
                 case 1:
                 case 2:
-                    runSpeed = (int)Random.Range(4, 7);
-                    climbSpeed = (int)Random.Range(4, 7);
-                    leapForce = (int)Random.Range(4, 7);
+                    runSpeed = (int)Random.Range(4, 8);
+                    climbSpeed = (int)Random.Range(4, 8);
+                    leapForce = (int)Random.Range(4, 8);
                     break;
             }
         }
