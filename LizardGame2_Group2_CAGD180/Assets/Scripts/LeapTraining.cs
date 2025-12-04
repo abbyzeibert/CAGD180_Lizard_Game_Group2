@@ -57,7 +57,7 @@ public class LeapTraining : MonoBehaviour
         {
             if(markDistance > 12)
             {
-                numJumps += 3;
+                numJumps += 5;
                 lizard.AddForce(Vector3.right * 8, ForceMode.Impulse);
                 lizard.AddForce(Vector3.up * 4, ForceMode.Impulse);
             }
@@ -97,12 +97,12 @@ public class LeapTraining : MonoBehaviour
         gameRunning = false;
         result.gameObject.SetActive(true);
         
-        if(numJumps >= 30)
+        if(numJumps >= 65)
         {
             manager.playerLeap += 2;
             result.text = "+ " + 2 + " leap!";
         }
-        else if( numJumps >= 15)
+        else if( numJumps >= 35)
         {
             manager.playerLeap += 1;
             result.text = "+ " + 1 + " leap!";
