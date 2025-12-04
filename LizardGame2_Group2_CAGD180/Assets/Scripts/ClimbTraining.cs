@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -17,9 +18,9 @@ public class ClimbTraining : MonoBehaviour
     // 0-2 points per training
     //30 seconds max 
 
-    private int score;
-    private int climbScore;
     public GameObject lizard;
+    public int direction = 1;
+    public int lizardSpeed = 5;
 
     public GameObject redZone;
     public GameObject yellowZone;
@@ -33,48 +34,71 @@ public class ClimbTraining : MonoBehaviour
     public int speed;
     public bool goingLeft;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        leftPos = leftPoint.transform.position;
+        rightPos = rightPoint.transform.position;
+
+
+       
     }
 
     // Update is called once per frame
     void Update()
     {
         BarMovement();
+       
     }
 
+
+    /// <summary>
+    /// Moves black bar back and forth when player presses down spacebar and stops when released
+    /// </summary>
     void BarMovement()
     {
-        if (goingLeft)
+
+        if (Input.GetKey(KeyCode.Space))
         {
-            if (transform.position.x <= leftPos.x)
+            if (goingLeft)
             {
-                goingLeft = false;
+                if (bar.transform.position.x <= leftPos.x)
+                {
+                    goingLeft = false;
+                }
+                else
+                {
+                    bar.transform.position += Vector3.left * Time.deltaTime * speed;
+                }
             }
             else
             {
-                transform.position += Vector3.left * Time.deltaTime * speed;
-            }
-        }
-        else
-        {
-            if (transform.position.x >= rightPos.x)
-            {
-                goingLeft = true;
-            }
-            else
-            {
-                transform.position += Vector3.right * Time.deltaTime * speed;
-            }
+                if (bar.transform.position.x >= rightPos.x)
+                {
+                    goingLeft = true;
+                }
+                else
+                {
+                    bar.transform.position += Vector3.right * Time.deltaTime * speed;
+                }
 
-        }
+            }
+        }           
     }
 
+  
 
-    void LizardMovement()
-    {
-      
-    }
+
+
+
+   
+
+
+    /* Coroutine: pause for 1-2 seconds while lizard climbs before player can press space again
+     * 
+     */
+
 }
+
