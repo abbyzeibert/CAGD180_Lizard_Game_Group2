@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Landing
+  - red
+  - yellow
+  - green
   layers:
   - Default
   - TransparentFX
