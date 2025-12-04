@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public int playerClimb;
     public int playerLeap;
 
+    public int money = 0;
+
     public int currentRace = 0;
 
 

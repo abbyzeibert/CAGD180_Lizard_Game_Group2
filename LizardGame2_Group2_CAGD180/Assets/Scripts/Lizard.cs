@@ -99,12 +99,10 @@ public class Lizard : MonoBehaviour
             case Type.Run:
                 shouldRun = true;
                 transform.rotation = Quaternion.Euler(0, 0, -15);
-                Debug.Log("Set rotation to -15 degrees");
                 StartCoroutine(RunWiggle());
                 break;
             case Type.Climb:
                 transform.rotation = Quaternion.Euler(0, 0, 75);
-                Debug.Log("Set rotation to 75 degrees");
                 shouldClimb = true;
                 StartCoroutine(ClimbWiggle());
                 break;
@@ -151,7 +149,6 @@ public class Lizard : MonoBehaviour
         while (shouldRun)
         {
             transform.Rotate(0, 0, (30 * direction));
-            Debug.Log("roated 30 degrees");
             direction *= -1;
             yield return new WaitForSeconds(1 / (float)runSpeed);
         }
