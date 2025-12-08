@@ -743,7 +743,7 @@ MonoBehaviour:
   playerLeap: 0
   playerStamina: 0
   maxPlayerStamina: 1
-  money: 0
+  money: 200
   currentRace: 0
 --- !u!4 &783014167
 Transform:
