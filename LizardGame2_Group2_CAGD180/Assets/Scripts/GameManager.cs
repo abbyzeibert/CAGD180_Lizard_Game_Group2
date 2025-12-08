@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public int playerSpeed;
     public int playerClimb;
     public int playerLeap;
+    public float playerStamina;
+    public float maxPlayerStamina = 1;
 
     public int money = 0;
 
