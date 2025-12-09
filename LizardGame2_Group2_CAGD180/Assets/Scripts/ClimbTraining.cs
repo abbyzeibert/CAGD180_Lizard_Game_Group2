@@ -20,85 +20,43 @@ public class ClimbTraining : MonoBehaviour
 
     public GameObject lizard;
     public int direction = 1;
-    public int lizardSpeed = 5;
 
-    public GameObject redZone;
-    public GameObject yellowZone;
-    public GameObject greenZone;
+   
 
-    public GameObject bar;
-    public GameObject leftPoint;
-    public GameObject rightPoint;
-    private Vector3 leftPos;
-    private Vector3 rightPos;
-    public int speed;
-    public bool goingLeft;
-
-    
+    private bool gameStart = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        leftPos = leftPoint.transform.position;
-        rightPos = rightPoint.transform.position;
-
-
-       
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        BarMovement();
+       
        
     }
 
 
-    /// <summary>
-    /// Moves black bar back and forth when player presses down spacebar and stops when released
-    /// </summary>
-    void BarMovement()
+    
+
+/*
+    private IEnumerable StartMiniGame()
     {
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            if (goingLeft)
-            {
-                if (bar.transform.position.x <= leftPos.x)
-                {
-                    goingLeft = false;
-                }
-                else
-                {
-                    bar.transform.position += Vector3.left * Time.deltaTime * speed;
-                }
-            }
-            else
-            {
-                if (bar.transform.position.x >= rightPos.x)
-                {
-                    goingLeft = true;
-                }
-                else
-                {
-                    bar.transform.position += Vector3.right * Time.deltaTime * speed;
-                }
-
-            }
-        }           
     }
 
-  
+  private IEnumerable GameLoop()
+    {
 
+    }
 
+    */
 
-
-   
-
-
-    /* Coroutine: pause for 1-2 seconds while lizard climbs before player can press space again
-     * 
-     */
+    //press + hold space to start
+    //after bar is released, wait 3 seconds while lizard moves
+    //reset bar position 
 
 }
 
