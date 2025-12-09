@@ -11,13 +11,29 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    public GameManager manager;
+
+    public void Start()
+    {
+        manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+    }
+
     /// <summary>
     /// Opens the Main Game Sceane when the play again button is pressed
     /// </summary>
     public void PlayAgainButton(int sceneIndex)
     {
-        //loads the scene that the index is refenrceing
-        SceneManager.LoadScene(sceneIndex);
+        if(sceneIndex == 6 || sceneIndex == 7)
+        {
+            SceneManager.LoadScene(sceneIndex);
+        }
+        else if(manager.trainingsDone < 7)
+        {
+            manager.trainingsDone++;
+            //loads the scene that the index is refenrceing
+            SceneManager.LoadScene(sceneIndex);
+        }
+
     }
     /// <summary>
     /// Quit the Game when the quit button is pressed

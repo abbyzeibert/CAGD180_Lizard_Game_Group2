@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public float maxPlayerStamina = 1;
 
     public int money = 0;
-
+    public int trainingsDone = 0;
     public int currentRace = 0;
 
 
