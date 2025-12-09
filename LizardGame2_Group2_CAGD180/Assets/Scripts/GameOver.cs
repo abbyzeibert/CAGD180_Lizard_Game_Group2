@@ -16,6 +16,7 @@ public class GameOver : MonoBehaviour
     /// </summary>
     public void PlayAgainButton(int sceneIndex)
     {
+        //loads the scene that the index is refenrceing
         SceneManager.LoadScene(sceneIndex);
     }
     /// <summary>
