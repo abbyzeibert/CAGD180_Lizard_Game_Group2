@@ -538,6 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lizard: {fileID: 1301516182}
   direction: 1
+  climbed: {fileID: 1603916002}
 --- !u!4 &779470446
 Transform:
   m_ObjectHideFlags: 0
@@ -1104,6 +1105,7 @@ MonoBehaviour:
   rightPoint: {fileID: 1304309152}
   speed: 10
   goingLeft: 0
+  climbed: {fileID: 0}
 --- !u!54 &1338865070
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1290,7 +1292,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Units Climbed:'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

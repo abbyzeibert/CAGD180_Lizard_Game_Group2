@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using TMPro;
 
 /*
  * Kafka Suenishi
@@ -32,7 +33,7 @@ public class ClimbBarScript : MonoBehaviour
     public bool goingLeft;
     private Vector3 barOGPosition;
 
-
+    public TMP_Text climbed;
 
 
     // Start is called before the first frame update
@@ -42,13 +43,16 @@ public class ClimbBarScript : MonoBehaviour
         leftPos = leftPoint.transform.position;
         rightPos = rightPoint.transform.position;
         barOGPosition = bar.transform.position;
+
+       
     }
 
     void Update()
     {
         BarMovement();
         ColorHit();
-        
+        StartCoroutine(WaitToClimb());
+        climbed.text = "units climbed: " + unitsClimbed;
     }
 
     /// <summary>
@@ -138,6 +142,7 @@ public class ClimbBarScript : MonoBehaviour
 
    private IEnumerator WaitToClimb()
     {
+      
         yield return new WaitForSeconds(2);
         bar.transform.position = barOGPosition;
     }
