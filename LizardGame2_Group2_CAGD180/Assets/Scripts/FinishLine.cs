@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class FinishLine : MonoBehaviour
 {
@@ -14,11 +15,14 @@ public class FinishLine : MonoBehaviour
     public GameObject thirdPod;
     public GameObject offScreen;
 
+    public TMP_Text startText;
+
     public GameManager manager;
 
     public void Start()
     {
         manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        StartCoroutine(StartRace());
     }
 
     public void OnTriggerEnter(Collider other)
@@ -78,6 +82,30 @@ public class FinishLine : MonoBehaviour
 
     public void SendToHub()
     {
-        SceneManager.LoadScene(1);
+        if (manager.currentRace == 0 || manager.currentRace == 1)
+        {
+            manager.trainingsDone = 0;
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(8);
+        }
+    }
+
+    public IEnumerator StartRace()
+    {
+        for (int i = 3; i >= 0; i--)
+        {
+            if( i > 0)
+            {
+                startText.text = i.ToString();
+            }
+            else
+            {
+                startText.text = "GO!";
+            }
+            yield return new WaitForSeconds(1);
+        }
     }
 }

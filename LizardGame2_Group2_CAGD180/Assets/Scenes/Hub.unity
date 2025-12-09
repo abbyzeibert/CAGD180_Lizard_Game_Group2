@@ -977,8 +977,8 @@ MonoBehaviour:
   stamina: {fileID: 1895418252}
   money: {fileID: 34918132}
   trainings: {fileID: 591545902}
-  raceButton: {fileID: 0}
-  finalRaceButton: {fileID: 0}
+  raceButton: {fileID: 496521763}
+  finalRaceButton: {fileID: 675924246}
 --- !u!1 &347642707
 GameObject:
   m_ObjectHideFlags: 0

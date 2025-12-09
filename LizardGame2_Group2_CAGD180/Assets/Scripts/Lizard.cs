@@ -7,6 +7,8 @@ public class Lizard : MonoBehaviour
     public int runSpeed;
     public int climbSpeed;
     public int leapForce;
+    public float maxStamina = 1.0f;
+    public float stamina;
 
     public bool shouldRun = true;
     public bool shouldClimb = false;
@@ -35,12 +37,14 @@ public class Lizard : MonoBehaviour
             runSpeed = manager.playerSpeed;
             climbSpeed = manager.playerClimb;
             leapForce = manager.playerLeap;
+            maxStamina = manager.maxPlayerStamina;
         }
         else if (isGod) 
         {
             runSpeed = 9;
             climbSpeed = 9;
             leapForce = 9;
+            maxStamina = 1.25f;
         }
         else
         {
@@ -59,6 +63,9 @@ public class Lizard : MonoBehaviour
                     break;
             }
         }
+        stamina = maxStamina;
+
+        StartCoroutine(StartRace());
     }
 
     // Update is called once per frame
@@ -117,7 +124,7 @@ public class Lizard : MonoBehaviour
     {
         if (shouldRun)
         {
-            transform.position = Vector3.MoveTowards(transform.position, curPoint.GetPoint(), runSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, curPoint.GetPoint(), runSpeed * stamina * Time.deltaTime);
         }
     }
 
@@ -125,7 +132,7 @@ public class Lizard : MonoBehaviour
     {
         if (shouldClimb)
         {
-            transform.position = Vector3.MoveTowards(transform.position, curPoint.GetPoint(), climbSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, curPoint.GetPoint(), climbSpeed * stamina * Time.deltaTime);
         }
     }
 
@@ -136,10 +143,18 @@ public class Lizard : MonoBehaviour
             rb.constraints = RigidbodyConstraints.None;
             rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 
-            rb.AddForce(Vector3.right * leapForce, ForceMode.Impulse);
-            rb.AddForce(Vector3.up * ((float)leapForce / 2), ForceMode.Impulse);
+            rb.AddForce(Vector3.right * leapForce * stamina, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * ((float)leapForce / 2) * stamina, ForceMode.Impulse);
             shouldLeap = false;
             isLeaping = true;
+        }
+    }
+
+    public void DecreseStamina()
+    {
+        if(stamina < 0.5f)
+        {
+            stamina -= 0.05f;
         }
     }
 
@@ -164,4 +179,13 @@ public class Lizard : MonoBehaviour
             yield return new WaitForSeconds(1 / (float)climbSpeed);
         }
     }
+
+    public IEnumerator StartRace()
+    {
+        shouldRun = false;
+        yield return new WaitForSeconds(3);
+        shouldRun = true;
+        InvokeRepeating("DecreseStamina", 0, 1f);
+    }
+
 }
