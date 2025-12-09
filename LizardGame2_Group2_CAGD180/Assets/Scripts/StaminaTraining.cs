@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class StaminaTraining : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class StaminaTraining : MonoBehaviour
 
     public GameObject flyPrefab;
     public GameManager manager;
+    public TMP_Text money;
+    public TMP_Text stamina;
 
     public bool isMoving = false;
     public bool isExtending = false;
@@ -30,6 +33,8 @@ public class StaminaTraining : MonoBehaviour
         tongueStart = transform.position;
         lizRb = lizard.GetComponent<Rigidbody>();
         manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        money.text = "Money: " + manager.money;
+        stamina.text = "Stamina: " + (Mathf.Round(manager.maxPlayerStamina * 100));
     }
 
     // Update is called once per frame
@@ -55,6 +60,7 @@ public class StaminaTraining : MonoBehaviour
         if(manager.money >= 15)
         {
             manager.money -= 15;
+            money.text = "Money: " + manager.money;
             flies.Add(Instantiate(flyPrefab, new Vector3(Random.Range(-8, 8), Random.Range(2, 5)), Quaternion.Euler(0, 0, 0)));
             isExtending = true;
             isMoving = true;
@@ -83,6 +89,7 @@ public class StaminaTraining : MonoBehaviour
         {
             Destroy(other.gameObject);
             manager.maxPlayerStamina += 0.05f;
+            stamina.text = "Stamina: " + (Mathf.Round(manager.maxPlayerStamina * 100));
             isExtending = false;
             curFly++;
             if(curFly == flies.Count)
