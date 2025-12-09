@@ -23,7 +23,7 @@ public class GameOver : MonoBehaviour
     /// </summary>
     public void PlayAgainButton(int sceneIndex)
     {
-        if(sceneIndex == 6 || sceneIndex == 7)
+        if(sceneIndex == 6 || sceneIndex == 7 || sceneIndex == 1)
         {
             SceneManager.LoadScene(sceneIndex);
         }
