@@ -24,11 +24,35 @@ public class HubStatDisplay : MonoBehaviour
         manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         speed.text = "Speed: " + manager.playerSpeed;
+        if(manager.playerSpeed >= 10)
+        {
+            manager.playerSpeed = 10;
+            speed.text = "Speed: " + manager.playerSpeed;
+            speed.color = Color.yellow;
+            speed.text += " (Max!)";
+        }
+
         climb.text = "Climb: " + manager.playerClimb;
+        if(manager.playerClimb >= 10)
+        {
+            manager.playerClimb = 10;
+            climb.text = "Climb: " + manager.playerClimb;
+            climb.color = Color.yellow;
+            climb.text += " (Max!)";
+        }
+
         leap.text = "Leap: " + manager.playerLeap;
+        if(manager.playerLeap >= 10)
+        {
+            manager.playerLeap = 10;
+            leap.text = "Leap: " + manager.playerLeap;
+            leap.color = Color.yellow;
+            leap.text += " (Max!)";
+        }
+
         stamina.text = "Stamina: " + (Mathf.Round(manager.maxPlayerStamina * 100));
         money.text = "Money: " + manager.money;
-        trainings.text = "Trainings Done: " + manager.trainingsDone + " / 7";
+        trainings.text = "Trainings Done: " + manager.trainingsDone + " / 4";
 
         if(manager.currentRace == 0 || manager.currentRace == 1)
         {

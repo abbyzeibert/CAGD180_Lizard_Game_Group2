@@ -139,7 +139,7 @@ public class FinishLine : MonoBehaviour
         }
         else
         {
-            manager.trainingsDone = 6;
+            manager.trainingsDone = 3;
             SceneManager.LoadScene(1);
         }
     }

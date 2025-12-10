@@ -42,18 +42,18 @@ public class SpeedTraining : MonoBehaviour
             clickAmount++;
             transform.Rotate(0, 0, (30 * direction));
             direction *= -1;
-        }//if click amount is over 140 add 3 speed
+        }//if click amount is over 140 add 2 speed
         if (clickAmount > 140)
         {
-            speedToAdd = 3;
-        }//if click amount is less than 140 and more than 90 add 2 speed
+            speedToAdd = 2;
+        }//if click amount is less than 140 and more than 90 add 1 speed
         else if (clickAmount > 90)
         {
-            speedToAdd = 2;
-        }//if click amount is less than 90 add 1 speed
+            speedToAdd = 1;
+        }//if click amount is less than 90 add 0 speed
         else
         {
-            speedToAdd = 1;
+            speedToAdd = 0;
         }
     }
     public IEnumerator WaitToStart()

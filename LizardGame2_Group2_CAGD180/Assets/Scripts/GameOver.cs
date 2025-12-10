@@ -27,7 +27,7 @@ public class GameOver : MonoBehaviour
         {
             SceneManager.LoadScene(sceneIndex);
         }
-        else if(manager.trainingsDone < 7)
+        else if(manager.trainingsDone < 4)
         {
             manager.trainingsDone++;
             //loads the scene that the index is refenrceing
