@@ -44,7 +44,7 @@ public class Lizard : MonoBehaviour
             runSpeed = 9;
             climbSpeed = 9;
             leapForce = 9;
-            maxStamina = 1.25f;
+            maxStamina = 2f;
         }
         else
         {
@@ -54,12 +54,14 @@ public class Lizard : MonoBehaviour
                     runSpeed = (int)Random.Range(1, 4);
                     climbSpeed = (int)Random.Range(1, 4);
                     leapForce = (int)Random.Range(1, 4);
+                    maxStamina = Random.Range(1.0f, 1.5f);
                     break;
                 case 1:
                 case 2:
                     runSpeed = (int)Random.Range(4, 8);
                     climbSpeed = (int)Random.Range(4, 8);
                     leapForce = (int)Random.Range(4, 8);
+                    maxStamina = Random.Range(1.25f, 2f);
                     break;
             }
         }
@@ -152,7 +154,7 @@ public class Lizard : MonoBehaviour
 
     public void DecreseStamina()
     {
-        if(stamina < 0.5f)
+        if(stamina > 0.5f)
         {
             stamina -= 0.05f;
         }

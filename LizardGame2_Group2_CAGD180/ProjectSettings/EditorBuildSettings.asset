@@ -28,7 +28,7 @@ EditorBuildSettings:
     guid: 77157786d526b154393028be73eb1ecb
   - enabled: 1
     path: Assets/Scenes/Final Race.unity
-    guid: 76431ccfe91cb054fbd8a54e4c8b05de
+    guid: 4c279f316bd90eb44a0416a75554cd72
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 3f82b560ea7b4f64dbf857080ba3c8cd
