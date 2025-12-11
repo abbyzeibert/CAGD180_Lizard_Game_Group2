@@ -155,7 +155,7 @@ public class FinishLine : MonoBehaviour
     /// </summary>
     public void SendToHub()
     {
-        if (manager.currentRace == 1 || manager.currentRace == 2)
+        if (manager.currentRace == 0 || manager.currentRace == 1 || manager.currentRace == 2)
         {
             manager.trainingsDone = 0;
             SceneManager.LoadScene(1);
