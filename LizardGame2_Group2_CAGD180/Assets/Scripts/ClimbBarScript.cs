@@ -45,6 +45,7 @@ public class ClimbBarScript : MonoBehaviour
     public GameManager manager;
 
     private bool gameStart = false;
+    private bool gameEnd = false;
 
     // Start is called before the first frame update
     void Start()
@@ -61,8 +62,9 @@ public class ClimbBarScript : MonoBehaviour
 
     void Update()
     {
+
         //starts game once space is pressed down
-        if (Input.GetKeyDown(KeyCode.Space) && gameStart == false)
+        if (Input.GetKeyDown(KeyCode.Space) && gameStart == false && gameEnd == false)
          StartCoroutine(GameTimer());
 
         if (gameStart == true)
@@ -70,6 +72,8 @@ public class ClimbBarScript : MonoBehaviour
             BarMovement();
             ColorHit();
         }
+       
+
         climbed.text = "units climbed: " + unitsClimbed;
     }
 
@@ -184,7 +188,8 @@ public class ClimbBarScript : MonoBehaviour
         
 
         gameStart = false;
-        
+        gameEnd = true;
+
         //determines stats to add depending on number of units climbed
         if (unitsClimbed >= 1000)
         {
@@ -202,8 +207,8 @@ public class ClimbBarScript : MonoBehaviour
         {
             climbToAdd = 0;
         }
-        
-        
+        manager.playerClimb += climbToAdd;
+
         yield return new WaitForSeconds(5);
 
         //return to hub
