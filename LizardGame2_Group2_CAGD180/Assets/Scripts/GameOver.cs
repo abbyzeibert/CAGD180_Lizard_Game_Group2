@@ -28,7 +28,7 @@ public class GameOver : MonoBehaviour
     public void PlayAgainButton(int sceneIndex)
     {
         //if sending to races or hub, doesn't check how many trainings have been done
-        if(sceneIndex == 6 || sceneIndex == 7 || sceneIndex == 1)
+        if(sceneIndex == 6 || sceneIndex == 7 || sceneIndex == 1 || sceneIndex == 5)
         {
             SceneManager.LoadScene(sceneIndex);
         }
