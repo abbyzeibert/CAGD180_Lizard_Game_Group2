@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: a486d08e75dd90341a8cc89df928dfd3, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -806,6 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c9a42896b4027469faa5f5ce66cbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!1 &947918386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,6 +1106,9 @@ MonoBehaviour:
   playerSpeed: 1
   playerClimb: 1
   playerLeap: 1
+  maxPlayerStamina: 1
+  money: 0
+  trainingsDone: 0
   currentRace: 0
 --- !u!4 &1455953079
 Transform:

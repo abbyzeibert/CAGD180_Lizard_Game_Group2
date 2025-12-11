@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 4bf160728731d4e4f903813e809ff1a2, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -166,6 +166,9 @@ MonoBehaviour:
   playerSpeed: 0
   playerClimb: 0
   playerLeap: 0
+  maxPlayerStamina: 1
+  money: 0
+  trainingsDone: 0
   currentRace: 0
 --- !u!4 &107481027
 Transform:

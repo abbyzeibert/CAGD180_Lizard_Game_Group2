@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 3be2ed3470732eb419ba39cc87730378, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1300,8 +1300,6 @@ MonoBehaviour:
   - {fileID: 0}
   curPlace: 0
   player: 0
-  raceActive: 0
-  justCheered: 0
   wonRace: 0
   firstPod: {fileID: 480372827}
   secondPod: {fileID: 2071668510}
@@ -1312,6 +1310,8 @@ MonoBehaviour:
   maxDistance: 8.5
   direction: 1
   markerSpeed: 15
+  raceActive: 0
+  justCheered: 0
   startText: {fileID: 374540463}
   manager: {fileID: 0}
 --- !u!1 &478167297
