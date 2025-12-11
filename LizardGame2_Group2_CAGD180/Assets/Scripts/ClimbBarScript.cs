@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 /*
  * Kafka Suenishi
@@ -15,7 +16,7 @@ using TMPro;
 public class ClimbBarScript : MonoBehaviour
 {
 
-
+    
     public GameObject lizard;
     public int lizardSpeed = 5;
     public int unitsClimbed;
@@ -34,7 +35,13 @@ public class ClimbBarScript : MonoBehaviour
     private Vector3 barOGPosition;
 
     public TMP_Text climbed;
+    public TMP_Text timer;
+    public TMP_Text startText;
+    public TMP_Text startText1;
 
+    public GameManager manager;
+
+    private bool gameStart = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,16 +49,17 @@ public class ClimbBarScript : MonoBehaviour
         //sets bar left/right boundaries and initial starting point
         leftPos = leftPoint.transform.position;
         rightPos = rightPoint.transform.position;
-        barOGPosition = bar.transform.position;
+        barOGPosition = greenZone.transform.position;
 
-       
+        manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
+        StartCoroutine(GameTimer());
     }
 
     void Update()
     {
         BarMovement();
         ColorHit();
-        StartCoroutine(WaitToClimb());
         climbed.text = "units climbed: " + unitsClimbed;
     }
 
@@ -86,7 +94,8 @@ public class ClimbBarScript : MonoBehaviour
                 }
             }
         }
-
+        
+        barOGPosition = greenZone.transform.position;
     }
 
 
@@ -98,13 +107,15 @@ public class ClimbBarScript : MonoBehaviour
 
         Vector3 raycastOrigin = transform.position + Vector3.back * 0.75f;
 
-        Debug.DrawRay(raycastOrigin, Vector3.forward, Color.green);
+        //making sure raycast is positioned correctly
+        //Debug.DrawRay(raycastOrigin, Vector3.forward, Color.green);
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
 
             RaycastHit hit;
 
+            //calculates how many units to climb depending on color raycast hits
             if (Physics.Raycast(raycastOrigin, Vector3.forward, out hit, 1f))
             {
                 if (hit.collider.gameObject.tag == "green")
@@ -121,13 +132,13 @@ public class ClimbBarScript : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.tag == "red")
                 {
-                    lizard.transform.position += Vector3.up * 25 * Time.deltaTime * lizardSpeed;
-                    unitsClimbed += 5;
+                    lizard.transform.position += Vector3.down * 25 * Time.deltaTime * lizardSpeed;
+                    unitsClimbed -= 5;
                     print("red");
                 }
             }
         }
-       //StartCoroutine(WaitToClimb());
+      
     }
 
 
@@ -140,13 +151,34 @@ public class ClimbBarScript : MonoBehaviour
         //closest value: -16
     }
 
-   private IEnumerator WaitToClimb()
-    {
-      
-        yield return new WaitForSeconds(2);
-        bar.transform.position = barOGPosition;
-    }
+   
+    
 
+    private IEnumerator GameTimer()
+    {
+        if (Input.GetKeyDown (KeyCode.Space))
+        {
+            startText.enabled = false;
+            startText1.enabled = false;
+            gameStart = true;
+
+
+
+            for (int i = 30; i >= 0; i--)
+            {
+                timer.text = "Time: " + i;
+                yield return new WaitForSeconds(1);
+            }
+        }
+
+        gameStart = false;
+        
+        
+        
+        yield return new WaitForSeconds(5);
+
+        SceneManager.LoadScene(1);
+    }
     
 
 }
