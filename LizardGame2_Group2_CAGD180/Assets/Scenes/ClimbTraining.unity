@@ -443,7 +443,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Release Space to Move
+  m_text: 'Release Space to move
+
+    (can spam space)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1562,7 +1564,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -9.4, y: 76.3, z: 14.767}
-  m_LocalScale: {x: 53.484398, y: 172.7638, z: 7.7168274}
+  m_LocalScale: {x: 53.484398, y: 336.04285, z: 7.7168274}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
