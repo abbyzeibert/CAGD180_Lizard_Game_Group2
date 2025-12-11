@@ -53,13 +53,20 @@ public class ClimbBarScript : MonoBehaviour
 
         manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
-        StartCoroutine(GameTimer());
+      
     }
 
     void Update()
     {
-        BarMovement();
-        ColorHit();
+
+        if (Input.GetKeyDown(KeyCode.Space) && gameStart == false)
+         StartCoroutine(GameTimer());
+
+        if (gameStart == true)
+        {
+            BarMovement();
+            ColorHit();
+        }
         climbed.text = "units climbed: " + unitsClimbed;
     }
 
@@ -156,8 +163,8 @@ public class ClimbBarScript : MonoBehaviour
 
     private IEnumerator GameTimer()
     {
-        if (Input.GetKeyDown (KeyCode.Space))
-        {
+     
+      
             startText.enabled = false;
             startText1.enabled = false;
             gameStart = true;
@@ -169,7 +176,7 @@ public class ClimbBarScript : MonoBehaviour
                 timer.text = "Time: " + i;
                 yield return new WaitForSeconds(1);
             }
-        }
+        
 
         gameStart = false;
         
