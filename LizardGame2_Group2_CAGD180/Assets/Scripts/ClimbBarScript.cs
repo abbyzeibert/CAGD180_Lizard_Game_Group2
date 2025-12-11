@@ -191,15 +191,15 @@ public class ClimbBarScript : MonoBehaviour
         gameEnd = true;
 
         //determines stats to add depending on number of units climbed
-        if (unitsClimbed >= 1000)
+        if (unitsClimbed >= 1500)
         {
             climbToAdd = 3;
         }
-        else if (unitsClimbed >= 500)
+        else if (unitsClimbed >= 1000)
         {
             climbToAdd = 2;
         }
-        else if (unitsClimbed >= 300)
+        else if (unitsClimbed >= 500)
         {
             climbToAdd = 1;
         }
