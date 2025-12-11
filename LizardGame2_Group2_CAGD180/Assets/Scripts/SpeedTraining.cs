@@ -78,7 +78,7 @@ public class SpeedTraining : MonoBehaviour
         instructions.SetActive(false);
         isTrainingMoveing = false;
         //wait for 7 seconds then head back to main scene
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene(1);
     }
 }
