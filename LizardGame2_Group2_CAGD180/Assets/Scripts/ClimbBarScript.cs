@@ -16,15 +16,18 @@ using UnityEngine.SceneManagement;
 public class ClimbBarScript : MonoBehaviour
 {
 
-    
+    //score variables
     public GameObject lizard;
     public int lizardSpeed = 5;
-    public int unitsClimbed;
+    public int unitsClimbed = 0;
+    public int climbToAdd = 0;
 
+    // target object
     public GameObject redZone;
     public GameObject yellowZone;
     public GameObject greenZone;
 
+    //bar positioning variables
     public GameObject bar;
     public GameObject leftPoint;
     public GameObject rightPoint;
@@ -58,7 +61,7 @@ public class ClimbBarScript : MonoBehaviour
 
     void Update()
     {
-
+        //starts game once space is pressed down
         if (Input.GetKeyDown(KeyCode.Space) && gameStart == false)
          StartCoroutine(GameTimer());
 
@@ -102,6 +105,7 @@ public class ClimbBarScript : MonoBehaviour
             }
         }
         
+        
         barOGPosition = greenZone.transform.position;
     }
 
@@ -137,6 +141,7 @@ public class ClimbBarScript : MonoBehaviour
                     unitsClimbed += 10;
                     print("yellow");
                 }
+                //if player hits red zone, fall 5 units
                 else if (hit.collider.gameObject.tag == "red")
                 {
                     lizard.transform.position += Vector3.down * 25 * Time.deltaTime * lizardSpeed;
@@ -164,13 +169,13 @@ public class ClimbBarScript : MonoBehaviour
     private IEnumerator GameTimer()
     {
      
-      
+      // hides tutorial text
             startText.enabled = false;
             startText1.enabled = false;
             gameStart = true;
 
 
-
+           // game runs for 30 seconds and displays time remaining
             for (int i = 30; i >= 0; i--)
             {
                 timer.text = "Time: " + i;
@@ -180,10 +185,28 @@ public class ClimbBarScript : MonoBehaviour
 
         gameStart = false;
         
+        //determines stats to add depending on number of units climbed
+        if (unitsClimbed >= 1000)
+        {
+            climbToAdd = 3;
+        }
+        else if (unitsClimbed >= 500)
+        {
+            climbToAdd = 2;
+        }
+        else if (unitsClimbed >= 300)
+        {
+            climbToAdd = 1;
+        }
+        else
+        {
+            climbToAdd = 0;
+        }
         
         
         yield return new WaitForSeconds(5);
 
+        //return to hub
         SceneManager.LoadScene(1);
     }
     
