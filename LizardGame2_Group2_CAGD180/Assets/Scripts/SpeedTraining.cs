@@ -42,7 +42,12 @@ public class SpeedTraining : MonoBehaviour
             clickAmount++;
             transform.Rotate(0, 0, (30 * direction));
             direction *= -1;
-        }//if click amount is over 140 add 2 speed
+        }//if click amount is over 250 add 3 speed
+        if (clickAmount > 250)
+        {
+            speedToAdd = 3;
+        }
+        //if click amount is over 140 add 2 speed
         if (clickAmount > 140)
         {
             speedToAdd = 2;
