@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/*
+ * Abby Zeibert
+ * 12/10/2025
+ * Displays player stats in hub scene
+ */
+
 public class HubStatDisplay : MonoBehaviour
 {
+    //updates with player variables
     public TMP_Text speed;
     public TMP_Text climb;
     public TMP_Text leap;
@@ -12,6 +19,7 @@ public class HubStatDisplay : MonoBehaviour
     public TMP_Text money;
     public TMP_Text trainings;
 
+    //buttons to send player to races
     public GameObject raceButton;
     public GameObject finalRaceButton;
 
@@ -21,6 +29,9 @@ public class HubStatDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //initializes text values based on game manager's stored values
+        //if a player has reached or exceeded the maximum value of a stat, 
+        //sets stat to max and turns text yellow
         manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         speed.text = "Speed: " + manager.playerSpeed;
@@ -50,10 +61,12 @@ public class HubStatDisplay : MonoBehaviour
             leap.text += " (Max!)";
         }
 
+        //multiplies stamina value by 100 for easier understanding
         stamina.text = "Stamina: " + (Mathf.Round(manager.maxPlayerStamina * 100));
         money.text = "Money: " + manager.money;
         trainings.text = "Trainings Done: " + manager.trainingsDone + " / 4";
 
+        //Hides or shows race buttons based on current race to send to correct scene
         if(manager.currentRace == 0 || manager.currentRace == 1)
         {
             raceButton.SetActive(true);

@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
  * Topher Overbey
  * 10/2/2025
  * Manage UI elements of the Game Over screen
-*/
-
+ * 
+ * Abby Zeibert
+ * 12/09/2025
+ * Handles sending player to trainings
+ */
 
 public class GameOver : MonoBehaviour
 {
@@ -15,6 +18,7 @@ public class GameOver : MonoBehaviour
 
     public void Start()
     {
+        //finds game manager in scene
         manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
@@ -23,10 +27,12 @@ public class GameOver : MonoBehaviour
     /// </summary>
     public void PlayAgainButton(int sceneIndex)
     {
+        //if sending to races or hub, doesn't check how many trainings have been done
         if(sceneIndex == 6 || sceneIndex == 7 || sceneIndex == 1)
         {
             SceneManager.LoadScene(sceneIndex);
         }
+        //only sends to a training if under max trainings and increments trainings done
         else if(manager.trainingsDone < 4)
         {
             manager.trainingsDone++;
