@@ -145,6 +145,7 @@ public class FinishLine : MonoBehaviour
 
         //turns off lizard script when lizards finish so they stop moving
         other.GetComponent<Lizard>().enabled = false;
+        other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
         curPlace++;
     }
